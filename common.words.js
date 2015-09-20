@@ -65,6 +65,9 @@ var RCW = {};
         wordtime.on('swipe', function(ev) {
             transition();
         });
+        wordtime.on('tap', function(ev) {
+            transition();
+        });
 
         _toggle = document.getElementById("toggle");
         var modetime = new Hammer(_toggle);
