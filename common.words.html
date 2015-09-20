@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en" manifest="rushcombe.appcache">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1, maximum-scale=1">
+
+    <title>Rushcombe Common Words: Year 1</title>
+
+    <link rel="manifest" href="manifest.json">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,700' rel='stylesheet' type='text/css'>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/hammer.js/2.0.4/hammer.min.js"></script>
+    <script type="text/javascript" src="common.words.js"></script>
+
+    <style type="text/css">
+        body,html {
+            background-color: #df4a32;
+            color: #FFFFFF;
+
+        }
+        
+        #word {
+            font-family: 'Open Sans', sans-serif;
+            top: 50%;
+            left: 50%;
+            width:30em;
+            height:18em;
+            margin-top: -9em; /*set to a negative number 1/2 of your height*/
+            margin-left: -15em; /*set to a negative number 1/2 of your width*/
+            position:fixed;
+            text-align: center;
+            vertical-align: middle;
+            line-height: 18em;
+            font-weight: 400;
+            font-size: 6em;
+            padding: 0;
+            z-index: 50;
+        }
+
+        #toggle {
+            display: block;
+            z-index: 100
+        }
+
+        .fadein {
+            visibility: visible;
+            opacity: 1;
+            transition: opacity 2s linear;
+        }
+
+        .fadeout {
+            visibility: hidden;
+            opacity: 0;
+            transition: visibility 0s 2s, opacity 2s linear;
+        }
+    </style>
+</head>
+<body>
+    <img id="toggle" src="repeat.png"/>
+
+    <p id="word"></p>
+
+    <script type="text/javascript">
+        RCW.start();
+    </script>
+</body>
+</html>
