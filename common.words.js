@@ -23,7 +23,7 @@ var RCW = {};
         "be", "he", "me", "we", "she", "no", "go", "so", "by", "my", "here", "there", "where", "love", "come", "some",
         "one", "once", "ask", "friend", "school", "put", "push", "pull", "full", "house", "our", "door", "floor", "poor",
         "because", "your", "today", "even", "behind", "child", "chlidren", "wild", "climb", "most", "only", "both", "old",
-        "cold", "gold", "hold", "toldy", "every", "everybody", "everyone", "great", "break", "steak", "beautiful", "after",
+        "cold", "gold", "hold", "told", "every", "everybody", "everyone", "great", "break", "steak", "beautiful", "after",
         "fast", "last", "past", "father", "mother", "class", "grass", "pass", "plant", "path", "bath", "hour", "prove",
         "improve", "sure", "sugar", "eye", "could", "would", "should", "work", "whole", "any"
     ];
