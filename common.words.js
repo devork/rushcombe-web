@@ -2,7 +2,15 @@ var RCW = {};
 
 (function(scope) {
 
+    "use strict";
+
+    var _FORWARD = 1;
+    var _BACKWARD = -1;
+
     var _MIN_PAUSE = 500;
+
+
+
     var _idx = 0;
     var _inmotion = false;
     var _elm;
@@ -33,9 +41,13 @@ var RCW = {};
     };
 
 
-    var transition = function() {
+    var transition = function(direction) {
         if (_inmotion === true || Date.now() - _ts < _MIN_PAUSE) {
             return;
+        }
+
+        if (direction === undefined) {
+            direction = _FORWARD;
         }
 
         _inmotion = true;
@@ -43,7 +55,9 @@ var RCW = {};
         if (_random) {
             _idx = (Math.random() * words.length);
         } else {
-            _idx = ++_idx % words.length;
+            _idx = (_idx + direction) % words.length;
+
+            if (_idx < 0) _idx += words.length
         }
         _elm.innerHTML = words[_idx];
         _ts = Date.now();
@@ -61,12 +75,18 @@ var RCW = {};
         _ts = Date.now();
 
         var wordtime = new Hammer(_elm);
-        wordtime.get('swipe').set({ direction: Hammer.DIRECTION_LEFT });
+        //wordtime.get('swipe').set({ direction: Hammer.DIRECTION_LEFT });
+        wordtime.get('swipe').set({ direction: Hammer.DIRECTION_HORIZONTAL });
         wordtime.on('swipe', function(ev) {
-            transition();
+            if (ev.direction === Hammer.DIRECTION_LEFT) {
+                transition(_BACKWARD);
+            } else {
+                transition(_FORWARD);
+            }
+
         });
         wordtime.on('tap', function(ev) {
-            transition();
+            transition(_FORWARD);
         });
 
         _toggle = document.getElementById("toggle");
