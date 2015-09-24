@@ -1,6 +1,6 @@
 var RCW = {};
 
-(function(scope) {
+(function(RCW) {
 
     "use strict";
 
@@ -78,7 +78,7 @@ var RCW = {};
         //wordtime.get('swipe').set({ direction: Hammer.DIRECTION_LEFT });
         wordtime.get('swipe').set({ direction: Hammer.DIRECTION_HORIZONTAL });
         wordtime.on('swipe', function(ev) {
-            if (ev.direction === Hammer.DIRECTION_LEFT) {
+            if (ev.direction === Hammer.DIRECTION_RIGHT) {
                 transition(_BACKWARD);
             } else {
                 transition(_FORWARD);
