@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1, maximum-scale=1">
+
+    <title>Ruschcombe Number Square: Year 1</title>
+
+    <link href='//fonts.googleapis.com/css?family=Open+Sans:400,600,700' rel='stylesheet' type='text/css'>
+    <script type="text/javascript" src="number.square.js"></script>
+
+    <style type="text/css">
+        body,html {
+            font-family: 'Open Sans', sans-serif;
+            top: 50%;
+            background-color: #df4a32;
+            color: #FFFFFF;
+            font-size: larger;
+        }
+
+        #numberSquare {
+            border: 1px solid white;
+            border-collapse: collapse;
+        }
+
+
+        #numberSquare td {
+            border: 1px solid white;
+            border-collapse: collapse;
+            width: 40px;
+            height: 40px;
+            text-align: center;
+            vertical-align: middle;
+            display: inline-block;
+            padding: 5px;
+        }
+
+        #container {
+            display: inline-block;
+            position: fixed;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            width: 522px;
+            height: 522px;
+            margin: auto;
+        }
+
+        #clear {
+            display: inline-block;
+            width: 100%;
+            text-align: center;
+            padding: 10px 0 10px 0;
+            background-color: #FFFFFF;
+            color: #df4a32;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="container">
+        <table id="numberSquare"></table>
+        <a id="clear">CLEAR</a>
+    </div>
+
+<script type="text/javascript">
+    RCW.start();
+</script>
+
+</body>
+</html>
