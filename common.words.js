@@ -1,5 +1,17 @@
 var RCW = {};
 
+Array.prototype.shuffle = Array.prototype.shuffle || function() {
+        // Durstenfeld variation of Fisher–Yates shuffle
+        for (var i = this.length - 1, j = 0, t = 0; i >= 0; i--) {
+            j = Math.floor(Math.random() * i);
+            t = this[i];
+            this[i] = this[j];
+            this[j] = t;
+        }
+
+        return this;
+};
+
 (function(RCW) {
 
     "use strict";
@@ -10,13 +22,13 @@ var RCW = {};
     var _MIN_PAUSE = 500;
 
 
-
     var _idx = 0;
     var _inmotion = false;
     var _elm;
     var _ts;
     var _toggle;
     var _random = false;
+    var _countElm;
 
     var words = [
         "the", "a", "do", "to", "of", "said", "says", "are", "were", "was", "is", "his", "as", "has", "I", "you", "they",
@@ -27,6 +39,8 @@ var RCW = {};
         "fast", "last", "past", "father", "mother", "class", "grass", "pass", "plant", "path", "bath", "hour", "prove",
         "improve", "sure", "sugar", "eye", "could", "would", "should", "work", "whole", "any"
     ];
+
+    var _shuffled = words.slice();
 
     var fullscreen = function(element) {
         if(element.requestFullscreen) {
@@ -40,6 +54,9 @@ var RCW = {};
         }
     };
 
+    var updateCount = function(count) {
+        _countElm.innerText = count;
+    };
 
     var transition = function(direction) {
         if (_inmotion === true || Date.now() - _ts < _MIN_PAUSE) {
@@ -52,15 +69,14 @@ var RCW = {};
 
         _inmotion = true;
 
-        if (_random) {
-            _idx = (Math.random() * words.length);
-        } else {
-            _idx = (_idx + direction) % words.length;
+        var len = _random ? _shuffled.length : words.length;
+        _idx = (_idx + direction) % len;
 
-            if (_idx < 0) _idx += words.length
-        }
-        _elm.innerHTML = words[_idx];
+        if (_idx < 0) _idx += len;
+
+        _elm.innerHTML = _random ? _shuffled[_idx] : words[_idx];
         _ts = Date.now();
+        updateCount(_idx + 1);
 
         _inmotion = false;
 
@@ -71,6 +87,7 @@ var RCW = {};
         //fullscreen(document.documentElement);
 
         _elm = document.getElementById("word");
+        _countElm = document.getElementById("count");
         _elm.innerHTML = words[_idx];
         _ts = Date.now();
 
@@ -94,11 +111,17 @@ var RCW = {};
         modetime.on('tap', function() {
             _random = !_random;
             if (_random) {
-                _toggle.src = "shuffle.png"
+                _toggle.src = "res/images/shuffle.png";
+                _shuffled = words.slice().shuffle();
+                _elm.innerHTML = _shuffled[_idx];
             } else {
-                _idx = 0;
-                _toggle.src = "repeat.png"
+                _toggle.src = "res/images/repeat.png";
+                _elm.innerHTML = words[_idx];
             }
+
+            _idx = 0;
+            updateCount(_idx + 1);
+
         });
 
     };
